@@ -17,6 +17,10 @@
     <nav>
         <a href="/">Home</a>
         <a href="/Dashboard">Dashboard</a>
+        @if (isAuth)
+        {
+            <a href="/Admin/Portal">Admin Portal</a>
+        }
         @if (!isAuth)
         {
             <a class="btn" href="/login">Sign in</a>

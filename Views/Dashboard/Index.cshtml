@@ -5,6 +5,13 @@
 <h2>Your Claims</h2>
 <p>These are the claims received from Frontegg after sign-in.</p>
 
+<div class="dashboard-actions">
+    <a href="/Admin/Portal" class="admin-portal-link">
+        <span>🔧</span>
+        Access Admin Portal
+    </a>
+</div>
+
 <table class="claims">
     <thead>
         <tr><th>Type</th><th>Value</th></tr>
@@ -19,3 +26,38 @@
     }
     </tbody>
 </table>
+
+<style>
+    .dashboard-actions {
+        margin: 20px 0;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #007bff;
+    }
+
+    .admin-portal-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .admin-portal-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        color: white;
+        text-decoration: none;
+    }
+
+    .admin-portal-link span {
+        font-size: 1.2em;
+    }
+</style>
