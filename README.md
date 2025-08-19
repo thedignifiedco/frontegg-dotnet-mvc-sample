@@ -25,21 +25,6 @@ FRONTEGG_CLIENT_SECRET="your-client-secret-here"
 - Post-logout Redirect URIs:
   - `http://localhost:5057/signout-callback-oidc`
 
-#### Production Deployment (Vercel)
-For production deployment, use environment variables instead of the `.env` file:
-
-**Required Environment Variables:**
-- `FRONTEGG_AUTHORITY`: Your Frontegg authority URL (e.g., `https://your-tenant.frontegg.com`)
-- `FRONTEGG_CLIENT_ID`: Your Frontegg client ID
-- `FRONTEGG_CLIENT_SECRET`: Your Frontegg client secret
-
-**Vercel Configuration:**
-1. Deploy to Vercel using the provided `vercel.json` configuration
-2. Set the environment variables in your Vercel project settings
-3. Update your Frontegg redirect URIs to include your production domain:
-   - Allowed Redirect URIs: `https://your-domain.vercel.app/signin-oidc`
-   - Post-logout Redirect URIs: `https://your-domain.vercel.app/signout-callback-oidc`
-
 ### Run locally
 ```bash
 dotnet restore
