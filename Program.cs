@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using DotNetEnv;
+
+// Load environment variables from .env file
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,9 +25,10 @@ builder.Services.AddAuthentication(options =>
 {
     var cfg = builder.Configuration.GetSection("Authentication:Frontegg");
 
-    options.Authority = cfg["Authority"];
-    options.ClientId = cfg["ClientId"];
-    options.ClientSecret = cfg["ClientSecret"];
+    // Read from environment variables first, fallback to configuration
+    options.Authority = Environment.GetEnvironmentVariable("FRONTEGG_AUTHORITY") ?? cfg["Authority"];
+    options.ClientId = Environment.GetEnvironmentVariable("FRONTEGG_CLIENT_ID") ?? cfg["ClientId"];
+    options.ClientSecret = Environment.GetEnvironmentVariable("FRONTEGG_CLIENT_SECRET") ?? cfg["ClientSecret"];
     options.CallbackPath = cfg["CallbackPath"];                 // /signin-oidc
     options.SignedOutCallbackPath = cfg["SignedOutCallbackPath"];
 

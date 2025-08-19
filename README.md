@@ -5,26 +5,40 @@
 - Frontegg application (Client ID/Secret)
 
 ### Configuration
-1) Copy `appsettings.json` and fill in your Frontegg details:
-```json
-{
-  "Authentication": {
-    "Frontegg": {
-      "Authority": "https://YOUR-SUBDOMAIN.frontegg.com",
-      "ClientId": "YOUR_CLIENT_ID",
-      "ClientSecret": "YOUR_CLIENT_SECRET",
-      "CallbackPath": "/signin-oidc",
-      "SignedOutCallbackPath": "/signout-callback-oidc"
-    }
-  }
-}
+
+#### Local Development
+1) Copy `.env.example` to `.env` and fill in your Frontegg details:
+```bash
+cp .env.example .env
 ```
 
-2) In Frontegg Portal → Authentication → Login Method → Hosted Login:
+2) Edit `.env` with your actual Frontegg credentials:
+```env
+FRONTEGG_AUTHORITY="https://your-tenant.frontegg.com"
+FRONTEGG_CLIENT_ID="your-client-id-here"
+FRONTEGG_CLIENT_SECRET="your-client-secret-here"
+```
+
+3) In Frontegg Portal → Authentication → Login Method → Hosted Login:
 - Allowed Redirect URIs: add the ones you will use locally, e.g.
   - `http://localhost:5057/signin-oidc`
 - Post-logout Redirect URIs:
   - `http://localhost:5057/signout-callback-oidc`
+
+#### Production Deployment (Vercel)
+For production deployment, use environment variables instead of the `.env` file:
+
+**Required Environment Variables:**
+- `FRONTEGG_AUTHORITY`: Your Frontegg authority URL (e.g., `https://your-tenant.frontegg.com`)
+- `FRONTEGG_CLIENT_ID`: Your Frontegg client ID
+- `FRONTEGG_CLIENT_SECRET`: Your Frontegg client secret
+
+**Vercel Configuration:**
+1. Deploy to Vercel using the provided `vercel.json` configuration
+2. Set the environment variables in your Vercel project settings
+3. Update your Frontegg redirect URIs to include your production domain:
+   - Allowed Redirect URIs: `https://your-domain.vercel.app/signin-oidc`
+   - Post-logout Redirect URIs: `https://your-domain.vercel.app/signout-callback-oidc`
 
 ### Run locally
 ```bash
@@ -42,3 +56,6 @@ Then open `https://localhost:5001`.
 ### Notes
 - Target framework: `net9.0`
 - Packages: `Microsoft.AspNetCore.Authentication.OpenIdConnect` (9.0.x), `Microsoft.IdentityModel.Tokens` (8.0.x)
+- The application reads Frontegg credentials from environment variables first, with fallback to `appsettings.json` for local development
+- The `.env` file is automatically loaded for local development using the `DotNetEnv` package
+- **Important**: Never commit your `.env` file to version control as it contains sensitive credentials

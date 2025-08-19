@@ -18,6 +18,9 @@ obj/
 # OS files
 .DS_Store
 
+# Environment variables (do not commit)
+.env
+
 # Secrets (do not commit)
 appsettings.Development.json
 appsettings.Local.json

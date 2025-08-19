@@ -1,0 +1,16 @@
+{
+  "buildCommand": "dotnet build",
+  "outputDirectory": "bin/Release/net9.0/publish",
+  "framework": "dotnet",
+  "functions": {
+    "bin/Release/net9.0/publish/**/*.dll": {
+      "runtime": "dotnet9"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
