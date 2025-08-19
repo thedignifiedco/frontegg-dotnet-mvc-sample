@@ -1,0 +1,25 @@
+bin/
+obj/
+
+# User-specific
+*.user
+*.suo
+*.userprefs
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+
+# OS files
+.DS_Store
+
+# Secrets (do not commit)
+appsettings.Development.json
+appsettings.Local.json
+
+

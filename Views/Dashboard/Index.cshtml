@@ -1,0 +1,21 @@
+@model IEnumerable<fronteggnetmvcsample.Controllers.ClaimView>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Your Claims</h2>
+<p>These are the claims received from Frontegg after sign-in.</p>
+
+<table class="claims">
+    <thead>
+        <tr><th>Type</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.Type</td>
+            <td><code>@c.Value</code></td>
+        </tr>
+    }
+    </tbody>
+</table>
